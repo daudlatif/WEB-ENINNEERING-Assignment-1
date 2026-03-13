@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PAF-IAST | Pak-Austria Fachhochschule</title>
+
+<!-- FAVICON using PAF-IAST logo -->
+<link rel="icon" type="image/png" href="https://media.licdn.com/dms/image/v2/C4E0BAQFljvLxti0vLg/company-logo_200_200/company-logo_200_200/0/1630631496445/paf_iast_logo?e=2147483647&v=beta&t=3rIvsARtcD6Cdo6vMxDmPZv-wBXBQadytAoLV7w95kg">
+<link rel="apple-touch-icon" href="https://media.licdn.com/dms/image/v2/C4E0BAQFljvLxti0vLg/company-logo_200_200/company-logo_200_200/0/1630631496445/paf_iast_logo?e=2147483647&v=beta&t=3rIvsARtcD6Cdo6vMxDmPZv-wBXBQadytAoLV7w95kg">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #1a5c3a;
+      --green-light: #2a7d50;
+      --green-pale: #e8f4ee;
+      --gold: #c9a84c;
+      --gold-light: #f0d080;
+      --white: #ffffff;
+      --off-white: #f7f9f7;
+      --text: #1a2a1f;
+      --text-muted: #5a705f;
+      --border: #d0e4d8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(26, 92, 58, 0.97);
+      backdrop-filter: blur(10px);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-badge {
+      width: 42px; height: 42px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 900;
+      color: var(--green);
+    }
+    .nav-logo-text { color: white; }
+    .nav-logo-text span:first-child {
+      display: block; font-weight: 600; font-size: 0.95rem; line-height: 1.1;
+    }
+    .nav-logo-text span:last-child {
+      font-size: 0.7rem; opacity: 0.75; letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      font-size: 0.88rem; font-weight: 500; letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-cta {
+      background: var(--gold); color: var(--green) !important;
+      padding: 7px 18px; border-radius: 20px; font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; color: var(--green) !important; }
+
+    /* ─── HERO ─── */
+    #hero {
+      height: 100vh; min-height: 600px;
+      background:
+        linear-gradient(135deg, rgba(26,92,58,0.88) 0%, rgba(10,40,20,0.75) 60%, rgba(201,168,76,0.3) 100%),
+        url('https://paf-iast.edu.pk/wp-content/uploads/2023/01/campus_banner.jpg') center/cover no-repeat;
+      background-color: var(--green);
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      padding: 0 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-particles {
+      position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+    }
+    .hero-particles::before, .hero-particles::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.12);
+    }
+    .hero-particles::before { width: 600px; height: 600px; top: -200px; right: -100px; animation: float 8s ease-in-out infinite; }
+    .hero-particles::after  { width: 400px; height: 400px; bottom: -100px; left: -80px;  animation: float 10s ease-in-out infinite reverse; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+
+    .hero-content { position: relative; z-index: 2; max-width: 800px; }
+    .hero-flag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px; padding: 6px 16px; margin-bottom: 1.5rem;
+      font-size: 0.8rem; color: rgba(255,255,255,0.9); letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .hero-flag span { font-size: 1.1rem; }
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      color: white; line-height: 1.15; margin-bottom: 0.5rem;
+    }
+    .hero-content h1 em { color: var(--gold-light); font-style: normal; }
+    .hero-content p {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: rgba(255,255,255,0.82); margin: 1.2rem auto 2rem;
+      max-width: 580px; line-height: 1.7;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: var(--green);
+      padding: 14px 32px; border-radius: 30px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(201,168,76,0.5); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.5); color: white;
+      padding: 13px 32px; border-radius: 30px;
+      font-weight: 500; font-size: 0.95rem; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: white; }
+
+    /* ─── STATS STRIP ─── */
+    .stats-strip {
+      background: var(--green);
+      padding: 1.5rem 2rem;
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
+    }
+    .stat-item {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0.8rem 2.5rem;
+      border-right: 1px solid rgba(255,255,255,0.15);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--gold-light); line-height: 1;
+    }
+    .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-top: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 80px 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-badge {
+      display: inline-block;
+      background: var(--green-pale); color: var(--green);
+      padding: 4px 14px; border-radius: 12px;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      color: var(--text); line-height: 1.25; margin-bottom: 1rem;
+    }
+    .section-title em { color: var(--green); font-style: normal; }
+    .section-sub { font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 560px; }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--off-white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-img {
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(26,92,58,0.15);
+      position: relative;
+    }
+    .about-img img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; }
+    .about-img-badge {
+      position: absolute; bottom: 16px; left: 16px;
+      background: var(--green); color: white;
+      padding: 8px 16px; border-radius: 8px;
+      font-size: 0.78rem; font-weight: 600;
+    }
+    .about-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; font-size: 0.97rem; }
+    .about-flags {
+      display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;
+    }
+    .flag-chip {
+      background: white; border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 16px;
+      font-size: 0.82rem; font-weight: 500; display: flex; align-items: center; gap: 6px;
+    }
+
+    /* ─── PROGRAMS ─── */
+    #programs { background: white; }
+    .programs-header { text-align: center; margin-bottom: 3rem; }
+    .programs-header .section-sub { margin: 0 auto; }
+    .programs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .program-card {
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .program-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 4px; height: 100%; background: var(--green);
+      transform: scaleY(0); transform-origin: bottom;
+      transition: transform 0.25s;
+    }
+    .program-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,92,58,0.1); border-color: var(--green); }
+    .program-card:hover::before { transform: scaleY(1); }
+    .program-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--green-pale); display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1rem;
+    }
+    .program-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .program-card p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; }
+    .program-level {
+      margin-top: 1rem; display: inline-block;
+      background: var(--green-pale); color: var(--green);
+      padding: 3px 10px; border-radius: 8px; font-size: 0.74rem; font-weight: 600;
+    }
+
+    /* ─── FEATURES ─── */
+    #features { background: var(--green); }
+    #features .section-title { color: white; }
+    #features .section-badge { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+    #features .section-sub { color: rgba(255,255,255,0.75); }
+    .features-header { text-align: center; margin-bottom: 3rem; }
+    .features-header .section-sub { margin: 0 auto; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .feature-card {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px; padding: 1.8rem 1.5rem; text-align: center;
+      transition: background 0.2s;
+    }
+    .feature-card:hover { background: rgba(255,255,255,0.12); }
+    .feature-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+    .feature-card h3 { color: var(--gold-light); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .feature-card p { color: rgba(255,255,255,0.72); font-size: 0.85rem; line-height: 1.6; }
+
+    /* ─── GALLERY ─── */
+    #gallery { background: var(--off-white); }
+    .gallery-header { text-align: center; margin-bottom: 3rem; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 200px 200px;
+      gap: 12px; border-radius: 16px; overflow: hidden;
+    }
+    .gallery-item { overflow: hidden; }
+    .gallery-item:first-child { grid-row: 1 / 3; }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* ─── CONTACT ─── */
+    #contact { background: white; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
+    .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1rem; }
+    .contact-info p { color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .contact-details { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .contact-details li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.9rem; color: var(--text-muted);
+    }
+    .contact-details .c-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--green-pale); display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; margin-top: -2px;
+    }
+    .contact-details strong { display: block; color: var(--text); font-weight: 600; margin-bottom: 2px; }
+
+    /* Contact Form */
+    .contact-form {
+      background: var(--off-white); border-radius: 16px;
+      padding: 2.5rem; border: 1px solid var(--border);
+    }
+    .contact-form h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+    .form-group label { font-size: 0.83rem; font-weight: 600; color: var(--text); letter-spacing: 0.02em; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 11px 14px; border: 1.5px solid var(--border);
+      border-radius: 10px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; color: var(--text); background: white;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green); box-shadow: 0 0 0 3px rgba(26,92,58,0.1);
+    }
+    .form-group input.error, .form-group select.error, .form-group textarea.error {
+      border-color: #e53e3e;
+    }
+    .form-group .err-msg { font-size: 0.76rem; color: #e53e3e; margin-top: -2px; display: none; }
+    .form-group.invalid .err-msg { display: block; }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      width: 100%;
+      background: var(--green); color: white;
+      border: none; border-radius: 10px;
+      padding: 14px; font-family: 'DM Sans', sans-serif;
+      font-size: 1rem; font-weight: 600; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .form-submit:hover { background: var(--green-light); transform: translateY(-1px); }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+    #form-success {
+      display: none; text-align: center; padding: 2rem;
+    }
+    #form-success .success-icon { font-size: 3rem; margin-bottom: 0.8rem; }
+    #form-success h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; }
+    #form-success p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--text); color: rgba(255,255,255,0.75);
+      padding: 50px 2rem 24px;
+    }
+    .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
+    .footer-col h4 { color: white; font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.84rem; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--gold-light); }
+    .footer-bottom {
+      max-width: 1100px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+    .footer-logo-text { color: white; font-family: 'Playfair Display', serif; font-size: 1.1rem; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .about-grid, .contact-grid, .footer-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item:first-child { grid-column: 1 / 3; grid-row: auto; }
+    }
+    @media (max-width: 600px) {
+      .stat-item { padding: 0.6rem 1rem; }
+      .form-row { grid-template-columns: 1fr; }
+      section { padding: 60px 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <img src="https://media.licdn.com/dms/image/v2/C4E0BAQFljvLxti0vLg/company-logo_200_200/company-logo_200_200/0/1630631496445/paf_iast_logo?e=2147483647&v=beta&t=3rIvsARtcD6Cdo6vMxDmPZv-wBXBQadytAoLV7w95kg" alt="paf-iast" width="50">
+    <div class="nav-logo-text">
+      <span>PAF-IAST</span>
+      <span>Pak-Austria Fachhochschule</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#features">Campus</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Apply Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-particles"></div>
+  <div class="hero-content">
+    <br><br><br><h1>Pak-Austria <em>Fachhochschule</em><br>Institute of Applied Sciences</h1>
+    <p>Pakistan's first foreign-model engineering university, nestled in the scenic mountains of Mang, Haripur — shaping tomorrow's innovators through world-class technical education.</p>
+    <div class="hero-btns">
+      <a href="#programs" class="btn-primary">Explore Programs</a>
+      <a href="#contact" class="btn-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat-item"><span class="stat-num">70+</span><span class="stat-label">PhD Faculty</span></div>
+  <div class="stat-item"><span class="stat-num">4,206</span><span class="stat-label">Students</span></div>
+  <div class="stat-item"><span class="stat-num">132</span><span class="stat-label">International Learners</span></div>
+  <div class="stat-item"><span class="stat-num">484</span><span class="stat-label">Alumni</span></div>
+  <div class="stat-item"><span class="stat-num">2020</span><span class="stat-label">Inaugurated</span></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="https://career.paf-iast.edu.pk/recruitment_ext/static/images/1.png"
+             onerror="this.src='https://images.unsplash.com/photo-1562774053-701939374585?w=800&q=80'"
+             alt="PAF-IAST Campus" />
+        <div class="about-img-badge">📍 Mang, Haripur, KPK</div>
+      </div>
+      <div class="about-text">
+        <span class="section-badge">About Us</span>
+        <h2 class="section-title">Where Innovation Meets <em>Global Excellence</em></h2>
+        <p>Pak-Austria Fachhochschule: Institute of Applied Sciences and Technology (PAF-IAST) is a public science and technology university established under a landmark collaboration between the Government of Khyber Pakhtunkhwa, Austrian and Chinese universities.</p>
+        <p>Inaugurated by former Prime Minister Imran Khan on 17 September 2020, PAF-IAST is Pakistan's first foreign-model engineering institute — built on a purpose-designed campus featuring a natural lake, smart classrooms, advanced labs, and a high-performance computing centre.</p>
+        <p>The institute focuses on Artificial Intelligence, Railway Engineering, Nanotechnology, Mineral Resources and Agricultural Technologies — preparing students for a rapidly evolving global job market.</p>
+        <div class="about-flags">
+          <div class="flag-chip">🇦🇹 3 Austrian Universities</div>
+          <div class="flag-chip">🇨🇳 5 Chinese Universities</div>
+          <div class="flag-chip">🏛️ HEC Recognized</div>
+          <div class="flag-chip">🌍 International Exchange</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="container">
+    <div class="programs-header">
+      <span class="section-badge">Academic Programs</span>
+      <h2 class="section-title">Degree Programs</h2>
+      <p class="section-sub">Cutting-edge BS and MPhil programs designed in collaboration with Austrian and Chinese partner universities.</p>
+    </div>
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="program-icon">🤖</div>
+        <h3>Computer Science & AI</h3>
+        <p>Sino-Pak Center for Artificial Intelligence with focus on ML, deep learning, and intelligent systems.</p>
+        <span class="program-level">BS · MPhil</span>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">⚡</div>
+        <h3>Electrical & Computer Engineering</h3>
+        <p>Specializations in Robotics in collaboration with Technical University Würzburg-Schweinfurt (THWS).</p>
+        <span class="program-level">BS · MPhil</span>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">🚂</div>
+        <h3>Railway Engineering</h3>
+        <p>Pakistan's only dedicated railway engineering program, addressing national infrastructure needs.</p>
+        <span class="program-level">BS</span>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">⚗️</div>
+        <h3>Nanotechnology</h3>
+        <p>Advanced materials science and nanotechnology applications in industry and medicine.</p>
+        <span class="program-level">BS · MPhil</span>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">⛏️</div>
+        <h3>Mineral Resource Engineering</h3>
+        <p>Sustainable extraction and processing leveraging KPK's vast mineral wealth.</p>
+        <span class="program-level">BS · MPhil</span>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">🌾</div>
+        <h3>Agriculture & Food Technologies</h3>
+        <p>Modern agri-tech and food processing innovations for Pakistan's agricultural sector.</p>
+        <span class="program-level">BS · MPhil</span>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">⚙️</div>
+        <h3>Mechanical Engineering Technology</h3>
+        <p>Joint programme with Chengdu University — 2 years in Pakistan, 2 years in China.</p>
+        <span class="program-level">BS (Joint)</span>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">📐</div>
+        <h3>Civil Engineering</h3>
+        <p>Structural, environmental, and transportation engineering with modern simulation labs.</p>
+        <span class="program-level">BS · MPhil</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="features-header">
+      <span class="section-badge">Campus & Facilities</span>
+      <h2 class="section-title">A Campus Built for the Future</h2>
+      <p class="section-sub">State-of-the-art infrastructure set in the scenic mountains of Mang, Haripur — just 40 miles from Islamabad.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏫</div>
+        <h3>Smart Classrooms</h3>
+        <p>Interactive learning environments with cutting-edge AV technology for hybrid and in-person instruction.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔬</div>
+        <h3>Advanced Laboratories</h3>
+        <p>Purpose-built research labs for AI, Nanotech, Railway, and Agricultural sciences.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💻</div>
+        <h3>HPC Data Centre</h3>
+        <p>High-performance computing infrastructure supporting research and AI workloads at scale.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌿</div>
+        <h3>Natural Lake Campus</h3>
+        <p>A naturally formed lake at the heart of campus — a breathtaking setting for student life and recreation.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏘️</div>
+        <h3>On-Campus Hostels</h3>
+        <p>Residential facilities for students with Wi-Fi, common areas, and a supportive community environment.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Innovation Technology Park</h3>
+        <p>Business Incubation Centre, Special Technology Zone, and Office of Research Innovation & Commercialization.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>International Exchange</h3>
+        <p>Student exchange programs with partner universities in Austria, China, and Germany.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎓</div>
+        <h3>Scholarships</h3>
+        <p>HEC Merit, Need-Based, Ehsaas, and external scholarships to support all deserving students.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-header">
+      <span class="section-badge">Gallery</span>
+      <h2 class="section-title">Life at <em>PAF-IAST</em></h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://career.paf-iast.edu.pk/recruitment_ext/static/images/1.png" alt="University campus aerial" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://media.licdn.com/dms/image/v2/D4D22AQGe8STS6u0GtQ/feedshare-shrink_2048_1536/B4DZeHd_g8GgAo-/0/1750324477331?e=1775088000&v=beta&t=y7VBiI1C8vxnkRBqsGyOcx9rcF-QCPOblabzpgTuTQs" alt="Research lab" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSEiCL57YRm3xJxsuMJjuwI_fB4HjRqlsOwQ&s" alt="Classroom learning" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJqfGA3ewvVZ6becm06VvY6Gqt3yxyLpeaKQ&s" alt="C2" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_GiM1egPLKSVtxSmR8SU3YTJpMAOeLcUlmQ&s" alt="Mountain campus" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="section-badge">Get In Touch</span>
+        <h2 class="section-title">Contact <em>PAF-IAST</em></h2>
+        <p>Reach out to us for admissions inquiries, academic collaborations, research partnerships, or general information about our programs and campus.</p>
+        <ul class="contact-details">
+          <li>
+            <div class="c-icon">📍</div>
+            <div><strong>Address</strong>Mang, Haripur, Khyber Pakhtunkhwa, Pakistan</div>
+          </li>
+          <li>
+            <div class="c-icon">📞</div>
+            <div><strong>Phone</strong>+92-995-645112-18</div>
+          </li>
+          <li>
+            <div class="c-icon">📠</div>
+            <div><strong>Fax</strong>+92-995-645117</div>
+          </li>
+          <li>
+            <div class="c-icon">🌐</div>
+            <div><strong>Website</strong><a href="https://paf-iast.edu.pk" target="_blank" style="color:var(--green)">www.paf-iast.edu.pk</a></div>
+          </li>
+          <li>
+            <div class="c-icon">📧</div>
+            <div><strong>Email</strong>info@paf-iast.edu.pk</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <div id="contact-form-wrap">
+          <div class="form-row">
+            <div class="form-group" id="fg-name">
+              <label for="f-name">Full Name *</label>
+              <input type="text" id="f-name" placeholder="Daud Latif" />
+              <span class="err-msg">Please enter your full name.</span>
+            </div>
+            <div class="form-group" id="fg-email">
+              <label for="f-email">Email Address *</label>
+              <input type="email" id="f-email" placeholder="you@example.com" />
+              <span class="err-msg">Please enter a valid email.</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" id="fg-phone">
+              <label for="f-phone">Phone Number</label>
+              <input type="tel" id="f-phone" placeholder="+92 300 0000000" />
+              <span class="err-msg">Enter a valid phone number.</span>
+            </div>
+            <div class="form-group" id="fg-subject">
+              <label for="f-subject">Subject *</label>
+              <select id="f-subject">
+                <option value="">-- Select Topic --</option>
+                <option>Admissions Inquiry</option>
+                <option>Program Information</option>
+                <option>Scholarship Query</option>
+                <option>Research Collaboration</option>
+                <option>International Partnership</option>
+                <option>General Inquiry</option>
+              </select>
+              <span class="err-msg">Please select a subject.</span>
+            </div>
+          </div>
+          <div class="form-group" id="fg-message">
+            <label for="f-message">Message *</label>
+            <textarea id="f-message" placeholder="Write your message here..."></textarea>
+            <span class="err-msg">Message must be at least 20 characters.</span>
+          </div>
+          <button class="form-submit" id="form-btn" onclick="submitForm()">
+            <span>✉️</span> Send Message
+          </button>
+          <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.8rem;text-align:center;">
+            Your message will be sent directly to info@paf-iast.edu.pk
+          </p>
+        </div>
+        <div id="form-success">
+          <div class="success-icon">✅</div>
+          <h4>Message Sent!</h4>
+          <p>Thank you for reaching out. The PAF-IAST team will get back to you within 2–3 working days.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-text">PAF-IAST</div>
+      <p>Pak-Austria Fachhochschule: Institute of Applied Sciences and Technology — building Pakistan's future through world-class technical education and international collaboration.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#features">Facilities</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Academics</h4>
+      <ul>
+        <li><a href="#">Admissions</a></li>
+        <li><a href="#">Scholarships</a></li>
+        <li><a href="#">Research</a></li>
+        <li><a href="#">Faculty</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <ul>
+        <li><a href="https://www.facebook.com/paf.iast/" target="_blank">Facebook</a></li>
+        <li><a href="https://www.instagram.com/pafiast/" target="_blank">Instagram</a></li>
+        <li><a href="https://x.com/pafiast" target="_blank">Twitter / X</a></li>
+        <li><a href="https://pk.linkedin.com/school/paf-iast/" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 PAF-IAST · Mang, Haripur, KPK, Pakistan</span>
+    <span>🇵🇰 🤝 🇦🇹 🤝 🇨🇳 &nbsp;Trilateral Academic Excellence</span>
+  </div>
+</footer>
+
+<script>
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id], div.stats-strip');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY + 80;
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target && y >= target.offsetTop && y < target.offsetTop + target.offsetHeight) {
+        a.style.color = 'var(--gold-light)';
+      } else {
+        a.style.color = '';
+      }
+    });
+  });
+
+  // Form validation & submission
+  function validate(id, condition) {
+    const fg = document.getElementById('fg-' + id);
+    const el = document.getElementById('f-' + id);
+    if (!condition) {
+      fg.classList.add('invalid');
+      el.classList.add('error');
+      return false;
+    } else {
+      fg.classList.remove('invalid');
+      el.classList.remove('error');
+      return true;
+    }
+  }
+
+  function submitForm() {
+    const name    = document.getElementById('f-name').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const subject = document.getElementById('f-subject').value;
+    const message = document.getElementById('f-message').value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[+\d\s\-()]{7,20}$/;
+
+    let valid = true;
+    valid = validate('name',    name.length >= 3)              && valid;
+    valid = validate('email',   emailRegex.test(email))        && valid;
+    valid = validate('subject', subject !== '')                 && valid;
+    valid = validate('message', message.length >= 20)          && valid;
+    if (phone) valid = validate('phone', phoneRegex.test(phone)) && valid;
+
+    if (!valid) return;
+
+    const btn = document.getElementById('form-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span>⏳</span> Sending…';
+
+    // Build mailto link as primary delivery method
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nSubject: ${subject}\n\nMessage:\n${message}`
+    );
+    const mailtoLink = `mailto:info@paf-iast.edu.pk?subject=${encodeURIComponent('[PAF-IAST Website] ' + subject)}&body=${body}`;
+
+    setTimeout(() => {
+      window.location.href = mailtoLink;
+      document.getElementById('contact-form-wrap').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }, 900);
+  }
+
+  // Enter key on inputs triggers submit
+  document.querySelectorAll('.contact-form input, .contact-form select, .contact-form textarea')
+    .forEach(el => el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && el.tagName !== 'TEXTAREA') submitForm();
+    }));
+</script>
+
+</body>
+</html>
